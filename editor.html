@@ -104,7 +104,8 @@
 				});
 			function preview(){
 				var article=String(quill.root.innerHTML);
-				sessionStorage.setItem("article",article);
+				localStorage.setItem("article",article);
+				window.alert("now going to preview page\n"+article)
 				window.open("http://jsoni.pythonanywhere.com/","_self");
 			}
 		</script>
