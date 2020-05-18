@@ -24,4 +24,4 @@ var articles=['<div id="ar1c0arend"class="gdocs"><iframe src="https://docs.googl
 									'<div class="vids"></div>',
 								  '<div id="ar1c5arend"class="gdocs"><iframe  src="https://docs.google.com/document/d/e/2PACX-1vTJR1meJliZqJ8qUwoMlry1MIw_kGuNSi7Qu9-WH184Q4khqU9QBpPD0aSz1mx3c_c_PfXl_QgcFsLa/pub?embedded=true"></iframe></div>'+
 									'<div class="vids"><iframe style="width:100%;height:185px;" src="https://www.youtube.com/embed/XmirFfWw6pM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>,
-<div id="ar5c2arend"><p>article that shoudl be inside articles.js</p></div>];
+								  '<div id="ar5c2arend"><p>article that shoudl be inside articles.js</p></div>'];
