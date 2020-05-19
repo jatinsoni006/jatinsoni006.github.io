@@ -98,19 +98,19 @@
             </div>
 			<script src="assets/js/articles.js" type="text/javascript"></script>
 			<script>
-        function activetab(){
-          $(function(){
-  var hash = window.location.hash;
-  hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+        			$(document).ready(function() {
+				  // Obtain hash value from the url
+				  var hash = window.location.hash;
+				  // Try to find a nav-link with the hash
+				  var hashtab = $('.tab[href="'+hash+'"]');
 
-  $('.nav-tabs a').click(function (e) {
-    $(this).tab('show');
-    var scrollmem = $('body').scrollTop();
-    window.location.hash = this.hash;
-    $('html,body').scrollTop(scrollmem);
-  });
-});
-        }
+				  // If there is no link with the hash, take default link
+				  if (hashtab.length === 0) {
+				    hashtab = $('.tab[href="#/design"]');
+				  }
+
+				  hashtab.addClass('active');
+				});
 				function showArticle(value){
 					document.getElementById("mainstuff").innerHTML="<div class='container' id='article'> </div>";
 					document.getElementById("article").innerHTML=articles[value];
