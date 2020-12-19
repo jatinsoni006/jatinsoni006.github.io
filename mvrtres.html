@@ -106,6 +106,8 @@
       .sbutton:hover{text-decoration:underline;box-shadow:1px 1px 10px 3px rgba(0,0,0,0.2);}
       .sbutton:visited{text-decoration:underline;box-shadow:1px 1px 10px 3px rgba(0,0,0,0.2);}
       </style>
+      <div id="preview" style="box-shadow:1px 1px 8px 3px rgba(0,0,0,0.2);overflow:hidden;height:0;padding:5px;width:400px;background:white;visibility:collapse;position:fixed;z-index:5;top:50px;left:50%;">
+      </div>
 	    <script>
 	    var artid="";
         var searchHTML=`<h4><div>
@@ -123,6 +125,17 @@
                     if(!search){document.getElementById("article").innerHTML=articles[articleId];}
                     if(search){document.getElementById("article").innerHTML=searchHTML;}
 				}
+        function prevArticle(articleId){
+          if(articleId=='false'){
+            document.getElementById("preview").style.visibility="collapse";
+            document.getElementById("preview").style.height=0;
+          }
+          else{
+            document.getElementById("preview").style.visibility="visible";
+            document.getElementById("preview").style.height="300px";
+            document.getElementById("preview").innerHTML=articles[articleId];
+          }
+        }
 				function giveLink(){
 				    window.alert('https://mvrtresources.pythonanywhere.com/?article='+String(artid));
 				}
@@ -155,26 +168,26 @@
             <h1>CAD Tutorials</h1>
             	<div class="row">
 							<div class="column" id="left">
-									<div onclick="showArticle('ar6c1arend')" class="card"> <h2>iLogic Forms (Hex Shaft Template)</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-ilogic.webp" class="dispimg" alt="iLogic Forms (Hex Shaft Template)"></div>
-									<div onclick="showArticle('ar3c1arend')" class="card"> <h2>Chain (#25, #35, Template)</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-chain.webp" class="dispimg" alt="Chain (#25, #35, Template)"></div>
-                  <div onclick="showArticle('ar9c1arend')" class="card"> <h2>Creating Parts</h2> <h5>May 25, 2020</h5><img src="static/images/cad-tutorials_template-parts.webp" class="dispimg" alt="Creating Parts"></div>
-                  <div onclick="showArticle('ar8c1arend')" class="card"> <h2>Assembling in Inventor</h2> <h5>May 25, 2020</h5><img src="static/images/cad-tutorials_template-assem.webp" class="dispimg" alt="Assembling in Inventor"></div>
-									<div onclick="showArticle('ar13c1arend')" class="card"> <h2>Rendering in Inventor</h2><h5>November 24, 2020</h5><img src="static/images/renderinginveotr.webp" class="dispimg" alt="Rendering in Inventor"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar6c1arend')" onclick="showArticle('ar6c1arend')" class="card"> <h2>iLogic Forms (Hex Shaft Template)</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-ilogic.webp" class="dispimg" alt="iLogic Forms (Hex Shaft Template)"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar3c1arend')" onclick="showArticle('ar3c1arend')" class="card"> <h2>Chain (#25, #35, Template)</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-chain.webp" class="dispimg" alt="Chain (#25, #35, Template)"></div>
+                  <div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar9c1arend')" onclick="showArticle('ar9c1arend')" class="card"> <h2>Creating Parts</h2> <h5>May 25, 2020</h5><img src="static/images/cad-tutorials_template-parts.webp" class="dispimg" alt="Creating Parts"></div>
+                  <div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar8c1arend')" onclick="showArticle('ar8c1arend')" class="card"> <h2>Assembling in Inventor</h2> <h5>May 25, 2020</h5><img src="static/images/cad-tutorials_template-assem.webp" class="dispimg" alt="Assembling in Inventor"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar13c1arend')" onclick="showArticle('ar13c1arend')" class="card"> <h2>Rendering in Inventor</h2><h5>November 24, 2020</h5><img src="static/images/renderinginveotr.webp" class="dispimg" alt="Rendering in Inventor"></div>
 
 						  	</div>
 							<div class="column" id="center">
-									<div onclick="showArticle('ar11c1arend')" class="card"> <h2>Installing Inventor</h2><h5>September 28, 2020</h5><img src="static/images/CAD-Tutorials_Template-install.webp" class="dispimg" alt="Installing Inventor"></div>
-									<div onclick="showArticle('ar7c1arend')" class="card"> <h2>Using MVRT Parts Library</h2> <h5>May 19, 2020</h5><img src="static/images/cad-tutorials_template-partslib.webp" class="dispimg" alt="Using MVRT Parts Library"></div>
-									<div onclick="showArticle('ar4c1arend')" class="card"> <h2>Inventor Templates (2x1 Template)</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-templates.webp" class="dispimg" alt="Inventor Templates (2x1 Template)"></div>
-									<div onclick="showArticle('ar1c1arend')" class="card"> <h2>Bumpers</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-bumpers.webp" class="dispimg" alt="Bumpers"></div>
-									<div onclick="showArticle('ar14c1arend')" class="card"> <h2>Importing Piston Files</h2><h5>November 25, 2020</h5><img src="static/images/pistonimportp.webp" class="dispimg" alt="Importing Piston Files"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar11c1arend')" onclick="showArticle('ar11c1arend')" class="card"> <h2>Installing Inventor</h2><h5>September 28, 2020</h5><img src="static/images/CAD-Tutorials_Template-install.webp" class="dispimg" alt="Installing Inventor"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar7c1arend')" onclick="showArticle('ar7c1arend')" class="card"> <h2>Using MVRT Parts Library</h2> <h5>May 19, 2020</h5><img src="static/images/cad-tutorials_template-partslib.webp" class="dispimg" alt="Using MVRT Parts Library"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar4c1arend')" onclick="showArticle('ar4c1arend')" class="card"> <h2>Inventor Templates (2x1 Template)</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-templates.webp" class="dispimg" alt="Inventor Templates (2x1 Template)"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar1c1arend')" onclick="showArticle('ar1c1arend')" class="card"> <h2>Bumpers</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-bumpers.webp" class="dispimg" alt="Bumpers"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar14c1arend')" onclick="showArticle('ar14c1arend')" class="card"> <h2>Importing Piston Files</h2><h5>November 25, 2020</h5><img src="static/images/pistonimportp.webp" class="dispimg" alt="Importing Piston Files"></div>
 
 						  	</div>
 							<div class="column" id="right">
-									<div onclick="showArticle('ar10c1arend')" class="card"> <h2>Creating Inventor Projects</h2> <h5>May 25, 2020</h5><img src="static/images/cad-tutorials_template-ipj.webp" class="dispimg" alt="Creating Inventor Projects"></div>
-									<div onclick="showArticle('ar5c1arend')" class="card"> <h2>Belts (Timing, Polyurethane)</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-belts.webp" class="dispimg" alt="Belts (Timing, Polyurethane)"></div>
-									<div onclick="showArticle('ar2c1arend')" class="card"> <h2>Pocketing (lightening)</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-pocket.webp" class="dispimg" alt="Pocketing (lightening)"></div>
-									<div onclick="showArticle('ar12c1arend')" class="card"> <h2>Colors in Inventor</h2><h5>November 23, 2020</h5><img src="static/images/picColors.webp" class="dispimg" alt="Colors in Inventor"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar10c1arend')" onclick="showArticle('ar10c1arend')" class="card"> <h2>Creating Inventor Projects</h2> <h5>May 25, 2020</h5><img src="static/images/cad-tutorials_template-ipj.webp" class="dispimg" alt="Creating Inventor Projects"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar5c1arend')" onclick="showArticle('ar5c1arend')" class="card"> <h2>Belts (Timing, Polyurethane)</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-belts.webp" class="dispimg" alt="Belts (Timing, Polyurethane)"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar2c1arend')" onclick="showArticle('ar2c1arend')" class="card"> <h2>Pocketing (lightening)</h2> <h5>May 18, 2020</h5><img src="static/images/cad-tutorials_template-pocket.webp" class="dispimg" alt="Pocketing (lightening)"></div>
+									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar12c1arend')" onclick="showArticle('ar12c1arend')" class="card"> <h2>Colors in Inventor</h2><h5>November 23, 2020</h5><img src="static/images/picColors.webp" class="dispimg" alt="Colors in Inventor"></div>
 
 						  	</div>
 						</div>
