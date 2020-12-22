@@ -2,25 +2,39 @@
 box-sizing: border-box;
 }
 
+.prevbox{
+	/*box-shadow:1px 1px 8px 3px rgba(0,0,0,0.2);*/
+	overflow:hidden;
+	height:200px;
+	padding:8px;
+	width:100%;
+	background:white;
+}
+
 .horbar{
 	width:100%;
 	padding:8px;
-	height:100px;
-	/*margin:5px;*/
+	overflow:auto;
+	margin-top:8px;
+	margin-bottom:8px;
+	box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .horbar:hover{
-	background-color: #eee;
+	background-color: #efe;
 	cursor: pointer;
 }
 .columnmain {
 	float: left; width: 80%; padding: 8px;
 }
 .columnimg {
-	float: left; width: 20%; padding: 8px;
+	float: left;width:20%; padding: 8px;
 }
 .dispimgF {
-	background-color: #aaa;	width: 100%; height: 100px;float:right;
+	background-color: #aaa;	width: auto; height: 100px;float:right;
+	margin-top:4px;
+	margin-bottom:4px;
+	/*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
 }
 
 .column {

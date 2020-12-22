@@ -62,6 +62,9 @@
                             <a href="https://mvrt.com/contact.html"><b>CONTACT</b></a>
                         </li>
                         <li class="">
+                            <a href="https://mvrt.com/contact.html"><b>SPONSORS</b></a>
+                        </li>
+                        <li class="">
                             <a href="https://mvrt.com/join.html" class="btn-main-nav btn-main-nav-sm" style="color:#FFF">Join <i class="far fa-arrow-alt-circle-right"></i></a>
                         </li>
                     </ul>
@@ -106,10 +109,9 @@
       .sbutton:hover{text-decoration:underline;box-shadow:1px 1px 10px 3px rgba(0,0,0,0.2);}
       .sbutton:visited{text-decoration:underline;box-shadow:1px 1px 10px 3px rgba(0,0,0,0.2);}
       </style>
-      <div id="preview" style="box-shadow:1px 1px 8px 3px rgba(0,0,0,0.2);overflow:hidden;height:0;padding:5px;width:400px;background:white;visibility:collapse;position:fixed;z-index:5;top:100px;left:40%;">
-      </div>
 	    <script>
-	    var artid="";
+        window.scrollTo(0,0);
+	      var artid="";
         var searchHTML=`<h4><div>
                       <a class='sbutton' target="_self" href="javascript:search();"><i style='float:left' class="material-icons">search</i>Search</a>
                       <input class='searchbox'  id='sbox' type='text' name='keywrd' placeholder='Find articles ...' ><br>
@@ -119,21 +121,45 @@
                     document.getElementById('share').style.display="inline"
                     document.getElementById('menu').style.display='none';
                     document.getElementById('tabmenu').style.display='none';
-            		document.getElementById('addArt').style.display = "none";
+            		    document.getElementById('addArt').style.display = "none";
                     document.getElementById('srchbut').style.display = "none";
                     artid=articleId;
-                    if(!search){document.getElementById("article").innerHTML=articles[articleId];}
+                    if(!search){
+                      document.getElementById("article").innerHTML=articles[articleId];
+                      sessionStorage.setItem("location",window.scrollY);
+                      window.scrollTo(0,0);
+                    }
                     if(search){document.getElementById("article").innerHTML=searchHTML;}
 				}
+
         function prevArticle(articleId){
+          var prevBox=document.getElementById("preview");
           if(articleId=='false'){
-            document.getElementById("preview").style.visibility="collapse";
-            document.getElementById("preview").style.height=0;
+            prevBox.style.visibility="collapse";
           }
           else{
-            document.getElementById("preview").style.visibility="visible";
-            document.getElementById("preview").style.height="300px";
-            document.getElementById("preview").innerHTML=articles[articleId];
+            var text=articles[articleId].substring(0,500);
+            for(i=0;i<text.length;i++){
+              if(text.substring(i,i+5)=="</h1>"){
+                i+=5;
+                break;
+              }
+            }
+            prevBox.innerHTML= text.substring(i,i+150)+".....";
+            prevBox.style.height="auto";
+            var prevBoxRect = prevBox.getBoundingClientRect();
+            var prevBoxHeight = prevBoxRect.bottom - prevBoxRect.top;
+            var rect = document.getElementById(articleId).getBoundingClientRect();
+            var height = window.innerHeight;
+            var boxtop=rect.bottom;
+            if((boxtop+prevBoxHeight)>height){
+              boxtop=rect.top-prevBoxHeight;
+            }
+            prevBox.style.top=boxtop+'px';
+            prevBox.style.left=rect.left+'px';
+            prevBox.style.width=rect.right-rect.left+'px';
+            prevBox.style.visibility="visible";
+
           }
         }
 				function giveLink(){
@@ -141,14 +167,16 @@
 				}
 			</script>
         <div class="content" id='menu'>
+          <div id="preview" style="box-shadow:1px 1px 8px 3px rgba(0,0,0,0.2);overflow:hidden;height:0;padding:8px;background:white;visibility:collapse;position:fixed;z-index:5;left:0;">
+          </div>
           <div class="content__section" data-tab="1" id="design">
             <h1>Design</h1>
             <div class="row">
 						  	<div class="columnmain" id="left">
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar4c0arend')" onclick="showArticle('ar4c0arend')" class="horbar"> <h2>Elevators</h2><h5>July 11, 2020</h5></div>
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar1c0arend')" onclick="showArticle('ar1c0arend')" class="horbar"> <h2>WCD and Gearbox</h2> <h5>May 06, 2020</h5></div>
-                  <div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar2c0arend')" onclick="showArticle('ar2c0arend')" class="horbar"> <h2>Using Pistons (Designs)</h2> <h5>May 06, 2020</h5></div>
-                  <div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar3c0arend')" onclick="showArticle('ar3c0arend')" class="horbar"> <h2>4 Bars & Virtual 4 Bars</h2> <h5>May 06, 2020</h5></div>
+									<div id="ar4c0arend" onmouseout="prevArticle('false')"onmouseenter="prevArticle('ar4c0arend')" onclick="showArticle('ar4c0arend')" class="horbar"> <h2>Elevators</h2><h5>July 11, 2020</h5></div>
+									<div id="ar1c0arend" onmouseout="prevArticle('false')"onmouseenter="prevArticle('ar1c0arend')" onclick="showArticle('ar1c0arend')" class="horbar"> <h2>WCD and Gearbox</h2> <h5>May 06, 2020</h5></div>
+                  <div id="ar2c0arend" onmouseout="prevArticle('false')"onmouseenter="prevArticle('ar2c0arend')" onclick="showArticle('ar2c0arend')" class="horbar"> <h2>Using Pistons (Designs)</h2> <h5>May 06, 2020</h5></div>
+                  <div id="ar3c0arend" onmouseout="prevArticle('false')"onmouseenter="prevArticle('ar3c0arend')" onclick="showArticle('ar3c0arend')" class="horbar"> <h2>4 Bars & Virtual 4 Bars</h2> <h5>May 06, 2020</h5></div>
 						  	</div>
 
 						 	<div class="columnimg" id="center">
@@ -165,26 +193,24 @@
             <h1>CAD Tutorials</h1>
             <div class="row">
 						  	<div class="columnmain" id="left">
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar6c1arend')" onclick="showArticle('ar6c1arend')" class="horbar"> <h2>iLogic Forms (Hex Shaft Template)</h2> <h5>May 18, 2020</h5></div>
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar3c1arend')" onclick="showArticle('ar3c1arend')" class="horbar"> <h2>Chain (#25, #35, Template)</h2> <h5>May 18, 2020</h5></div>
-                  <div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar9c1arend')" onclick="showArticle('ar9c1arend')" class="horbar"> <h2>Creating Parts</h2> <h5>May 25, 2020</h5></div>
-                  <div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar8c1arend')" onclick="showArticle('ar8c1arend')" class="horbar"> <h2>Assembling in Inventor</h2> <h5>May 25, 2020</h5></div>
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar13c1arend')" onclick="showArticle('ar13c1arend')" class="horbar"> <h2>Rendering in Inventor</h2><h5>November 24, 2020</h5></div>
-
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar11c1arend')" onclick="showArticle('ar11c1arend')" class="horbar"> <h2>Installing Inventor</h2><h5>September 28, 2020</h5></div>
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar7c1arend')" onclick="showArticle('ar7c1arend')" class="horbar"> <h2>Using MVRT Parts Library</h2> <h5>May 19, 2020</h5></div>
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar4c1arend')" onclick="showArticle('ar4c1arend')" class="horbar"> <h2>Inventor Templates (2x1 Template)</h2> <h5>May 18, 2020</h5></div>
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar1c1arend')" onclick="showArticle('ar1c1arend')" class="horbar"> <h2>Bumpers</h2> <h5>May 18, 2020</h5></div>
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar14c1arend')" onclick="showArticle('ar14c1arend')" class="horbar"> <h2>Importing Piston Files</h2><h5>November 25, 2020</h5></div>
-
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar10c1arend')" onclick="showArticle('ar10c1arend')" class="horbar"> <h2>Creating Inventor Projects</h2> <h5>May 25, 2020</h5></div>
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar5c1arend')" onclick="showArticle('ar5c1arend')" class="horbar"> <h2>Belts (Timing, Polyurethane)</h2> <h5>May 18, 2020</h5></div>
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar2c1arend')" onclick="showArticle('ar2c1arend')" class="horbar"> <h2>Pocketing (lightening)</h2> <h5>May 18, 2020</h5></div>
-									<div onmouseout="prevArticle('false')"onmouseover="prevArticle('ar12c1arend')" onclick="showArticle('ar12c1arend')" class="horbar"> <h2>Colors in Inventor</h2><h5>November 23, 2020</h5></div>
+									<div id="ar6c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar6c1arend')" onclick="showArticle('ar6c1arend')" class="horbar"> <h2>iLogic Forms (Hex Shaft Template)</h2> <h5>May 18, 2020</h5></div>
+                  <div id="ar3c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar3c1arend')" onclick="showArticle('ar3c1arend')" class="horbar"> <h2>Chain (#25, #35, Template)</h2> <h5>May 18, 2020</h5></div>
+                  <div id="ar9c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar9c1arend')" onclick="showArticle('ar9c1arend')" class="horbar"> <h2>Creating Parts</h2> <h5>May 25, 2020</h5></div>
+                  <div id="ar8c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar8c1arend')" onclick="showArticle('ar8c1arend')" class="horbar"> <h2>Assembling in Inventor</h2> <h5>May 25, 2020</h5></div>
+                  <div id="ar13c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar13c1arend')" onclick="showArticle('ar13c1arend')" class="horbar"> <h2>Rendering in Inventor</h2><h5>November 24, 2020</h5></div>
+									<div id="ar11c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar11c1arend')" onclick="showArticle('ar11c1arend')" class="horbar"> <h2>Installing Inventor</h2><h5>September 28, 2020</h5></div>
+                  <div id="ar7c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar7c1arend')" onclick="showArticle('ar7c1arend')" class="horbar"> <h2>Using MVRT Parts Library</h2> <h5>May 19, 2020</h5></div>
+                  <div id="ar4c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar4c1arend')" onclick="showArticle('ar4c1arend')" class="horbar"> <h2>Inventor Templates (2x1 Template)</h2> <h5>May 18, 2020</h5></div>
+                  <div id="ar1c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar1c1arend')" onclick="showArticle('ar1c1arend')" class="horbar"> <h2>Bumpers</h2> <h5>May 18, 2020</h5></div>
+                  <div id="ar14c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar14c1arend')" onclick="showArticle('ar14c1arend')" class="horbar"> <h2>Importing Piston Files</h2><h5>November 25, 2020</h5></div>
+									<div id="ar10c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar10c1arend')" onclick="showArticle('ar10c1arend')" class="horbar"> <h2>Creating Inventor Projects</h2> <h5>May 25, 2020</h5></div>
+									<div id="ar5c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar5c1arend')" onclick="showArticle('ar5c1arend')" class="horbar"> <h2>Belts (Timing, Polyurethane)</h2> <h5>May 18, 2020</h5></div>
+									<div id="ar2c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar2c1arend')" onclick="showArticle('ar2c1arend')" class="horbar"> <h2>Pocketing (lightening)</h2> <h5>May 18, 2020</h5></div>
+									<div id="ar12c1arend" onmouseout="prevArticle('false')"onmouseover="prevArticle('ar12c1arend')" onclick="showArticle('ar12c1arend')" class="horbar"> <h2>Colors in Inventor</h2><h5>November 23, 2020</h5></div>
                 </div>
 
               <div class="columnimg" id="center">
-                <img onmouseout="prevArticle('false')"onmouseover="prevArticle('ar6c1arend')" onclick="showArticle('ar6c1arend')"  src="static/images/cad-tutorials_template-ilogic.webp" class="dispimgF" alt="iLogic Forms (Hex Shaft Template)">
+                <img onmouseout="prevArticle('false')"onmouseenter="prevArticle('ar6c1arend')" onclick="showArticle('ar6c1arend')"  src="static/images/cad-tutorials_template-ilogic.webp" class="dispimgF" alt="iLogic Forms (Hex Shaft Template)">
                 <img src="static/images/cad-tutorials_template-chain.webp" class="dispimgF" alt="Chain (#25, #35, Template)">
                 <img src="static/images/cad-tutorials_template-parts.webp" class="dispimgF" alt="Creating Parts">
                 <img src="static/images/cad-tutorials_template-assem.webp" class="dispimgF" alt="Assembling in Inventor">
@@ -457,6 +483,7 @@
             document.getElementById('tabmenu').style.display='inherit';
             document.getElementById('srchbut').style.display = "inline";
             document.getElementById("article").innerHTML='';
+            window.scrollTo(0,sessionStorage.getItem("location"));
         }
         function search(){
                 var keyword=String(document.getElementById('sbox').value);
